@@ -10,9 +10,8 @@ function update() {
     updateStars();
     updatePlayer();
     updateEnemies();
+    enemieSpawnerUpdate();
   }
   window.requestAnimationFrame(update);
 }
 update();
-enemies.push(createEnemie('images/enemie1Ship.png', 80, 2,2,400,3))
-enemies.push(createEnemie('images/playerShip.png', 50, 4,3,400,3))
