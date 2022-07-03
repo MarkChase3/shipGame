@@ -68,7 +68,7 @@ function createEnemie(imgPath, y, speed, hp, shootFrequency, shootSpeed) {
 *
 */
 function updateEnemie(enemie, i) {
-  if (enemie.hp == 0) {
+  if (enemie.hp <= 0) {
     enemies.splice(i, 1);
     return;
   }
@@ -118,14 +118,12 @@ function enemiesFollowPlayer() {
 function enemiesShoots(enemie) {
   if (Date.now() - enemie.lastShoot > enemie.shootFrequency) {
     enemie.lastShoot = Date.now();
-    enemie.shoots.push(createShoot(enemie.x, enemie.y, -3, 3, 10, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010'))
+    enemie.shoots.push(createShoot(enemie.x, enemie.y, -3, 3, 10, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010',false))
   }
   enemie.shoots.forEach((shoot, i) => shootUpdate(shoot, i, () => {
-    if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], shoot.x, shoot.y, shoot.sizeB, shoot.sizeB)){
-      enemies = [];
-      enemies.push(createEnemie('images/enemie1Ship.png', 80, 2,2,400,3))
-enemies.push(createEnemie('images/playerShip.png', 50, 4,3,400,3))
-      createPlayer();
+    if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], shoot.x, shoot.y, shoot.sizeB, shoot.sizeB)) {
+      player.hp--;
+      enemie.shoots.splice(i,1);
     }
   }));
 }

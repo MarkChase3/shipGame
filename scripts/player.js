@@ -35,6 +35,7 @@
 * @property {Boolean} moving
 * @property {Number} gradientSize
 * @property {Object} gradient
+* @property {Number} hp
 *
 */
 
@@ -56,7 +57,8 @@ function createPlayer() {
     shoots: [],
     moving: false,
     gradientSize: 20,
-    gradient: ctx.createRadialGradient(canvas.width / 10 + 8, canvas.height / 2, 2, canvas.width / 10 + 8, canvas.height / 2, 20)
+    gradient: ctx.createRadialGradient(canvas.width / 10 + 8, canvas.height / 2, 2, canvas.width / 10 + 8, canvas.height / 2, 20),
+    hp: 5
   }
   player.gradient.addColorStop(0, 'rgb(0,162,232)')
   player.gradient.addColorStop(1, 'rgba(0,162,232,0)');
@@ -99,7 +101,7 @@ function movePlayer() {
 function playerShoot() {
   if (Date.now() - player.lastShoot > player.shootFrequency) {
     player.lastShoot = Date.now();
-    player.shoots.push(createShoot(player.x, player.y + player.frames[player.currFrame][3] / 2, player.shootSpeed, player.shootSize, player.shootSize * 2, '#d03010e2', '#9010001a', '#e0403090', '#ff605000'));
+    player.shoots.push(createShoot(player.x, player.y + player.frames[player.currFrame][3] / 2, player.shootSpeed, player.shootSize, player.shootSize * 2, '#d03010e2', '#9010001a', '#e0403090', '#ff605000',false));
   }
 }
 
@@ -122,5 +124,11 @@ function updatePlayer() {
   movePlayer();
   playerShoot();
   player.shoots.forEach((shoot, i) => shootUpdate(shoot, i, playerShootHitEnemies));
+  if(player.hp<=0){
+          enemies = [];
+      enemies.push(createEnemie('images/enemie1Ship.png', 80, 2,2,400,3))
+enemies.push(createEnemie('images/playerShip.png', 50, 4,3,400,3))
+      createPlayer();
+  }
 }
 createPlayer();

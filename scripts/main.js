@@ -11,6 +11,8 @@ function update() {
     updatePlayer();
     updateEnemies();
     enemieSpawnerUpdate();
+    drawUI();
+    updatePowerupsSpawner();
   }
   window.requestAnimationFrame(update);
 }
