@@ -5,13 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <button style="position:fixed;width:20vw;left:40vw;" onclick="openFullscreen();">FULLSCREEN</button>
+  <button style="position:fixed;width:20vw;left:40vw;top:5vh" onclick="enemies.push(createEnemie('images/enemie1Ship.png', Math.random()*180, 2,2,400,3))
+">SPAWN</button>
   <canvas id="screen" width="360" height="180"></canvas>
-  <script src="script.js"></script>
+  <script src="scripts/jsdoc.js"></script>
+  <script src="scripts/header.js"></script>
+  <script src="scripts/stars.js"></script>
+  <script src="scripts/shoots.js"></script>
+  <script src="scripts/player.js"></script>
+  <script src="scripts/enemies.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>
