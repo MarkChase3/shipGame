@@ -37,6 +37,7 @@
 * @property {Object} gradient
 * @property {Number} hp
 * @property {Number} distance
+* @property {Number} kills
 *
 */
 
@@ -60,7 +61,8 @@ function createPlayer() {
     gradientSize: 20,
     gradient: ctx.createRadialGradient(canvas.width / 10 + 8, canvas.height / 2, 2, canvas.width / 10 + 8, canvas.height / 2, 20),
     hp: 5,
-    distance: 0
+    distance: 0,
+    kills: 0
   }
   player.gradient.addColorStop(0, 'rgb(0,162,232)')
   player.gradient.addColorStop(1, 'rgba(0,162,232,0)');
@@ -94,7 +96,7 @@ function movePlayer() {
   }
   if (player.moving) {
     player.y = mouse.y - player.frames[player.currFrame][3] / 2;
-    player.gradient = ctx.createRadialGradient(player.x + 8, player.y + 8, 2, player.x + 8, player.y + 8,  20)
+    player.gradient = ctx.createRadialGradient(player.x + 8, player.y + 8, 2, player.x + 8, player.y + 8, 20)
     player.gradient.addColorStop(0, 'rgb(0,162,232)')
     player.gradient.addColorStop(1, 'rgba(0,162,232,0)');
   }
@@ -103,7 +105,7 @@ function movePlayer() {
 function playerShoot() {
   if (Date.now() - player.lastShoot > player.shootFrequency) {
     player.lastShoot = Date.now();
-    player.shoots.push(createShoot(player.x, player.y + player.frames[player.currFrame][3] / 2, player.shootSpeed, player.shootSize, player.shootSize * 2, '#d03010e2', '#9010001a', '#e0403090', '#ff605000',false));
+    player.shoots.push(createShoot(player.x, player.y + player.frames[player.currFrame][3] / 2, player.shootSpeed, player.shootSize, player.shootSize * 2, '#d03010e2', '#9010001a', '#e0403090', '#ff605000', false));
   }
 }
 
@@ -112,11 +114,11 @@ function playerShoot() {
 * @param {shoot} shoot
 *
 */
-function playerShootHitEnemies(shoot,i) {
-  enemies.forEach((enemie,j) => {
+function playerShootHitEnemies(shoot, i) {
+  enemies.forEach((enemie, j) => {
     if (aabbCollision(shoot.x, shoot.y, shoot.sizeB, shoot.sizeB, enemie.x, enemie.y, enemie.frames[enemie.currFrame][2], enemie.frames[enemie.currFrame][3])) {
-        enemie.hp--;
-        player.shoots.splice(i,1);
+      enemie.hp--;
+      player.shoots.splice(i, 1);
     }
   })
 }
@@ -125,12 +127,10 @@ function updatePlayer() {
   movePlayer();
   playerShoot();
   player.shoots.forEach((shoot, i) => shootUpdate(shoot, i, playerShootHitEnemies));
-  if(player.hp<=0){
-          enemies = [];
+  if (player.hp <= 0) {
+    enemies = [];
     enemiesShoots = [];
-      enemies.push(createEnemie('images/enemie1Ship.png', 80, 2,2,400,3))
-enemies.push(createEnemie('images/playerShip.png', 50, 4,3,400,3))
-      createPlayer();
+    createPlayer();
   }
   player.distance += 1;
 }

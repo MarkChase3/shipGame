@@ -69,6 +69,7 @@ function createEnemie(imgPath, y, speed, hp, shootFrequency, shootSpeed) {
 */
 function updateEnemie(enemie, i) {
   if (enemie.hp <= 0) {
+    player.kills++;
     enemies.splice(i, 1);
     return;
   }
