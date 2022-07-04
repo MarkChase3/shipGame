@@ -132,6 +132,6 @@ function updatePlayer() {
 enemies.push(createEnemie('images/playerShip.png', 50, 4,3,400,3))
       createPlayer();
   }
-  player.distance++;
+  player.distance += 1;
 }
 createPlayer();

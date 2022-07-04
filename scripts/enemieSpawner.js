@@ -13,7 +13,7 @@ function createEnemieSpawner() {
   enemieSpawner.spawnFrequency = 3000;
 }
 function spawnEnemies() {
-  if (Date.now() - enemieSpawner.lastSpawn > enemieSpawner.spawnFrequency && enemies.length<3) {
+  if (Date.now() - enemieSpawner.lastSpawn > enemieSpawner.spawnFrequency && enemies.length<4) {
     enemieSpawner.lastSpawn = Date.now();
     let lastEnemie;
     enemies.push(enemies[enemies.length-1]);

@@ -124,7 +124,7 @@ function enemiesFollowPlayer() {
 function enemiesShoot(enemie) {
   if (Date.now() - enemie.lastShoot > enemie.shootFrequency) {
     enemie.lastShoot = Date.now();
-    enemiesShoots.push(createShoot(enemie.x, enemie.y, -3, 3, 10, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010', false))
+    enemiesShoots.push(createShoot(enemie.x, enemie.y, -3, 3, 7, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010', false))
   }
 
 }

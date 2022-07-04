@@ -9,6 +9,6 @@ function drawUI(){
   ctx.font = '1em "Arial"';
   ctx.fillStyle = 'white';
   ctx.textBaseline = "top";
-  ctx.fillText(player.distance + 'KM',canvas.width - ctx.measureText(player.distance + 'KM').width, 0);
+  ctx.fillText(Math.floor(player.distance) + 'KM',canvas.width - ctx.measureText(Math.floor(player.distance) + 'KM').width, 0);
 }
 createUI();
