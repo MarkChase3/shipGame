@@ -29,13 +29,14 @@
 * @property {Number}  hp
 * @property {Number}  lastShoot
 * @property {Number}  shootFrequency
-* @property {Array<shoots>}  shoots
 * @property {Number}  shootSpeed
 *
 */
 
 /** @type {Array<enemie>} */
 let enemies = [];
+/** @type {Array<shoot>} */
+let enemiesShoots = [];
 /**
 *
 * @param {String} imgPath
@@ -57,7 +58,6 @@ function createEnemie(imgPath, y, speed, hp, shootFrequency, shootSpeed) {
   enemie.hp = hp;
   enemie.lastShoot = 0;
   enemie.shootFrequency = shootFrequency;
-  enemie.shoots = [];
   enemie.shootSpeed = shootSpeed;
   return enemie
 }
@@ -86,7 +86,13 @@ function updateEnemie(enemie, i) {
 function updateEnemies() {
   enemies.forEach(updateEnemie);
   enemiesFollowPlayer();
-  enemies.forEach(enemiesShoots);
+  enemies.forEach(enemiesShoot);
+  enemiesShoots.forEach((shoot, i) => shootUpdate(shoot, i, () => {
+    if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], shoot.x, shoot.y, shoot.sizeB, shoot.sizeB)) {
+      player.hp--;
+      enemiesShoots.splice(i, 1);
+    }
+  }));
 }
 function enemieDontCollideWithOthers(i) {
   for (let j = 0; j < enemies.length; j++) {
@@ -115,15 +121,10 @@ function enemiesFollowPlayer() {
 * @param {enemie} enemie
 *
 */
-function enemiesShoots(enemie) {
+function enemiesShoot(enemie) {
   if (Date.now() - enemie.lastShoot > enemie.shootFrequency) {
     enemie.lastShoot = Date.now();
-    enemie.shoots.push(createShoot(enemie.x, enemie.y, -3, 3, 10, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010',false))
+    enemiesShoots.push(createShoot(enemie.x, enemie.y, -3, 3, 10, '#30f010ff', '#30f01010', '#40ff20ff', '#40ff2010', false))
   }
-  enemie.shoots.forEach((shoot, i) => shootUpdate(shoot, i, () => {
-    if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], shoot.x, shoot.y, shoot.sizeB, shoot.sizeB)) {
-      player.hp--;
-      enemie.shoots.splice(i,1);
-    }
-  }));
+
 }

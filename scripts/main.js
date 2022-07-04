@@ -1,8 +1,3 @@
-
-// special effects in the background
-
-
-
 // update
 function update() {
   if (nImages == nImagesLoaded) {
