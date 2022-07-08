@@ -133,5 +133,8 @@ function updatePlayer() {
     createPlayer();
   }
   player.distance += 1;
+  if(player.distance % 500 == 0){
+  	player.hp++
+  }
 }
 createPlayer();

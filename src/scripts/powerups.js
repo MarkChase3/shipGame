@@ -15,7 +15,6 @@ function updatePowerupsSpawner() {
   spawnPowerUps();
   powerUpSpawner.powerups.forEach((powerUp, i) => shootUpdate(powerUp, i, (powerup, i) => {
     if (aabbCollision(powerup.x, powerup.y, powerup.sizeB, powerup.sizeB, player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3])) {
-      player.hp++;
       powerUpSpawner.powerups.splice(i, 1);
     }
     if(powerup.x<0){

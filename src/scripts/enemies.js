@@ -93,6 +93,10 @@ function updateEnemies() {
       player.hp--;
       enemiesShoots.splice(i, 1);
     }
+    if(shoot.x + shoot.sizeB < 0){
+      enemiesShoots.splice(i, 1)
+	}
+    
   }));
 }
 function enemieDontCollideWithOthers(i) {

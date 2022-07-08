@@ -1,6 +1,6 @@
 let UI = {};
 function createUI() {
-  UI.imgs = [[loadImage('images/heart.png'), 1, 1, 16, 16], [loadImage('images/skull.png'), 1, 1, 16, 16],];
+  UI.imgs = [[loadImage('images/heart.png'), 1, 1, 16, 16], [loadImage('images/skull.png'), 1, 1, 15, 16],];
 }
 function drawUI() {
   for (let i = 0; i < player.hp; i++) {
