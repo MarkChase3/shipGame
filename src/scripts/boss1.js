@@ -5,28 +5,32 @@ let boss1 = [
 		},
 		() => {
 			if(Date.now() - boss1.start > 1000){
-			boss1.x-=boss1.speed
-			ctx.save()
-			ctx.scale(-1,1)
-			ctx.drawImage(boss1.img,
-		    	boss1.frames[boss1.currFrame][0],
-		    	boss1.frames[boss1.currFrame][1],
-		    	boss1.frames[boss1.currFrame][2],
-		    	boss1.frames[boss1.currFrame][3],
-		    	-boss1.x, boss1.y,
-		    	boss1.frames[boss1.currFrame][2],
-		    	boss1.frames[boss1.currFrame][3],
-	  		);
-	  		ctx.restore()
-	  		if (Date.now() - boss1.lastFrame > boss1.frameChangeFrequency) {
-    			boss1.lastFrame = Date.now();
-    			boss1.currFrame = (boss1.currFrame == 0 ? 1 : 0);
-  			}
-	  		if(boss1.x + boss1.frames[boss1.currFrame][2] < 0){
-	  			return 1
+				if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], boss1.x, boss1.y, boss1.frames[boss1.currFrame][2], boss1.frames[boss1.currFrame][3]) && Date.now() - boss1.lastDmg > 1000) {
+					boss1.lastDmg = Date.now();
+					player.hp-=3;
+				}
+				boss1.x-=boss1.speed
+				ctx.save()
+				ctx.scale(-1,1)
+				ctx.drawImage(boss1.img,
+			    	boss1.frames[boss1.currFrame][0],
+			    	boss1.frames[boss1.currFrame][1],
+			    	boss1.frames[boss1.currFrame][2],
+			    	boss1.frames[boss1.currFrame][3],
+			    	-boss1.x, boss1.y,
+			    	boss1.frames[boss1.currFrame][2],
+			    	boss1.frames[boss1.currFrame][3],
+		  		);
+		  		ctx.restore()
+		  		if (Date.now() - boss1.lastFrame > boss1.frameChangeFrequency) {
+	    			boss1.lastFrame = Date.now();
+	    			boss1.currFrame = (boss1.currFrame == 0 ? 1 : 0);
+	  			}
+		  		if(boss1.x + boss1.frames[boss1.currFrame][2] < 0){
+		  			return 1
+				}
+		  		return -1
 			}
-	  		return -1
-		}
 		}
 	],
 	[
@@ -35,31 +39,35 @@ let boss1 = [
 		},
 		() => {
 			if(Date.now() - boss1.start > 1000){
-			boss1.x+=boss1.speed
-			ctx.drawImage(boss1.img,
-		    	boss1.frames[boss1.currFrame][0],
-		    	boss1.frames[boss1.currFrame][1],
-		    	boss1.frames[boss1.currFrame][2],
-		    	boss1.frames[boss1.currFrame][3],
-		    	boss1.x, boss1.y,
-		    	boss1.frames[boss1.currFrame][2],
-		    	boss1.frames[boss1.currFrame][3],
-	  		);
-	  		if (Date.now() - boss1.lastFrame > boss1.frameChangeFrequency) {
-    			boss1.lastFrame = Date.now();
-    			boss1.currFrame = (boss1.currFrame == 0 ? 1 : 0);
-  			}
-			if(boss1.x > canvas.width + boss1.frames[boss1.currFrame][2]){
-	  			return 2
+				if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], boss1.x, boss1.y, boss1.frames[boss1.currFrame][2], boss1.frames[boss1.currFrame][3]) && Date.now() - boss1.lastDmg > 1000) {
+					boss1.lastDmg = Date.now();
+					player.hp-=3;
+				}
+				boss1.x+=boss1.speed
+				ctx.drawImage(boss1.img,
+			    	boss1.frames[boss1.currFrame][0],
+			    	boss1.frames[boss1.currFrame][1],
+			    	boss1.frames[boss1.currFrame][2],
+			    	boss1.frames[boss1.currFrame][3],
+			    	boss1.x, boss1.y,
+			    	boss1.frames[boss1.currFrame][2],
+			    	boss1.frames[boss1.currFrame][3],
+		  		);
+		  		if (Date.now() - boss1.lastFrame > boss1.frameChangeFrequency) {
+	    			boss1.lastFrame = Date.now();
+	    			boss1.currFrame = (boss1.currFrame == 0 ? 1 : 0);
+	  			}
+				if(boss1.x > canvas.width + boss1.frames[boss1.currFrame][2]){
+		  			return 2
+				}
+		  		return -1
 			}
-	  		return -1
-		}
 		},
 	
 	], 
 	[	
 		() => {
-					boss1.start = Date.now()
+			boss1.start = Date.now()
 		},
 		() => {
 			if(Date.now() - boss1.start > 1000){
@@ -103,6 +111,7 @@ let boss1 = [
 		}]
 ]
 boss1.reset = () => {
+	boss1.lastDmg = Date.now();
 	boss1.start = Date.now()
 	boss1.x = canvas.width
 	boss1.y = 90
