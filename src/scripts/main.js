@@ -6,10 +6,12 @@ function update() {
     then = Date.now();
     updateStars();
     updatePlayer();
-    updateEnemies();
+	updateEnemies();
+	if(!boss)
     enemieSpawnerUpdate();
     drawUI();
     updatePowerupsSpawner();
+    if(boss)
     updateStateMachine(boss1)
   }
   now = Date.now();
