@@ -131,8 +131,8 @@ function updatePlayer() {
     enemies = [];
     enemiesShoots = [];
     createPlayer();
-    clearTimeout(boss1.next);
-    boss1.reset();
+    clearTimeout(currBoss.next);
+    currBoss.reset();
  	boss = false
   }
   player.distance += 1;

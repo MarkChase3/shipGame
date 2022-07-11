@@ -64,4 +64,5 @@ function openFullscreen() {
 function aabbCollision(ax, ay, aw, ah, bx, by, bw, bh) {
   return (ax + aw > bx && ay + ah > by && bx + bw > ax && by + bh > ay);
 }
+let bosses = [];
 let boss = false;

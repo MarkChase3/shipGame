@@ -1,4 +1,7 @@
 // update
+bosses[0].reset();
+bosses[1].reset();
+let currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
 let now = 0, then = Date.now();
 function update() {
   if (nImages == nImagesLoaded && now - then > 1 / 30) {
@@ -8,7 +11,7 @@ function update() {
     updatePlayer();
 	updateEnemies();
 	if(boss)
-    updateStateMachine(boss1)
+    updateStateMachine(currBoss)
 	if(!boss)
     enemieSpawnerUpdate();
     updatePowerupsSpawner();

@@ -12,8 +12,8 @@ let enemieSpawner = {};
 function createEnemieSpawner() {
   enemieSpawner.lastSpawn = 0;
   enemieSpawner.spawnFrequency = 3000;
-  enemieSpawner.enemiesTypes = [{ imgPath: ' images/enemie1Ship.png', spd: 4, hp: 4, shootFrequency: 300, shootSpeed: 4 },
-  { imgPath: ' images/enemie2Ship.png', spd: 5, hp: 5, shootFrequency: 500, shootSpeed: 2 }];
+  enemieSpawner.enemiesTypes = [{ imgPath: ' images/enemie1Ship.png', spd: 4, hp: 4, shootFrequency: 400, shootSpeed: 4 },
+  { imgPath: ' images/enemie2Ship.png', spd: 5, hp: 5, shootFrequency: 500, shootSpeed: 5 }];
 }
 function spawnEnemies() {
   if (Date.now() - enemieSpawner.lastSpawn > enemieSpawner.spawnFrequency && enemies.length < 5) {
