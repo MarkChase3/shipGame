@@ -12,6 +12,7 @@ function createPowerupSpawner() {
 	    player.immortal = false;
 		removePowerupFromUI(n)
 	  },5000);
+
 	}
   ];
 }
