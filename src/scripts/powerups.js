@@ -1,17 +1,18 @@
 let powerUpSpawner = {};
 function createPowerupSpawner() {
   powerUpSpawner.lastSpawn = 0;
-  powerUpSpawner.spawnFrequency = 10000;
+  powerUpSpawner.spawnFrequency = 20000;
   powerUpSpawner.powerups = [];
   powerUpSpawner.types = [
    () => {
   	  player.immortal = true;
 	  player.immortalStart = Date.now();
-	  let n = addPowerupToUI('images/heart.png',10000, [1,1,16,16], 'Immortality');
+	  let n = addPowerupToUI('images/heart.png',5000, [1,1,16,16], 'Immortality');
 	  window.setTimeout(() => {
 	    player.immortal = false;
 		removePowerupFromUI(n)
-	  },10000);
+	  },5000);
+
 	}
   ];
 }
