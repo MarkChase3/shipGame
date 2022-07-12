@@ -16,7 +16,7 @@ function createEnemieSpawner() {
   { imgPath: ' images/enemie2Ship.png', spd: 5, hp: 5, shootFrequency: 500, shootSpeed: 5 }];
 }
 function spawnEnemies() {
-  if (Date.now() - enemieSpawner.lastSpawn > enemieSpawner.spawnFrequency && enemies.length < 5) {
+  if (Date.now() - enemieSpawner.lastSpawn > enemieSpawner.spawnFrequency && enemies.length < 4) {
     enemieSpawner.lastSpawn = Date.now();
     let selectedEnemie = enemieSpawner.enemiesTypes[Math.floor(Math.random() * enemieSpawner.enemiesTypes.length)];
     enemies.push(enemies[enemies.length - 1]);

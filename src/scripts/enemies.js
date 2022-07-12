@@ -90,7 +90,6 @@ function updateEnemies() {
   enemies.forEach(enemiesShoot);
   enemiesShoots.forEach((shoot, i) => shootUpdate(shoot, i, () => {
     if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], shoot.x, shoot.y, shoot.sizeB, shoot.sizeB)) {
-      if(!player.immortal)
 		player.hp--;
       enemiesShoots.splice(i, 1);
     }

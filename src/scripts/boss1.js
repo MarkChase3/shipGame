@@ -49,7 +49,7 @@ bosses[0] = [
 		},
 		() => {
 			if(Date.now() - bosses[0].start > 1000){
-				if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], bosses[0].x, bosses[0].y, bosses[0].frames[bosses[0].currFrame][2], bosses[0].frames[bosses[0].currFrame][3]) && Date.now() - bosses[0].lastDmg > 1000) {
+				if (aabbCollision(player.x, player.y, player.frames[player.currFrame][2], player.frames[player.currFrame][3], bosses[0].x, bosses[0].y, bosses[0].frames[bosses[0].currFrame][2], bosses[0].frames[bosses[0].currFrame][3]) && Date.now() - bosses[0].lastDmg > 1000 ) {
 					bosses[0].lastDmg = Date.now();
 					player.hp-=3;
 				}
@@ -162,8 +162,9 @@ bosses[0].reset = () => {
 	bosses[0].shootFrequency = 300
 	bosses[0].shoots = []
 	bosses[0].next = window.setTimeout( () => {
+		console.log('1');
 		boss = true;
 		currBoss = bosses[Math.floor(Math.random() * (bosses.length))] 
-	}, 20000)
+	}, 60000)
 }
 

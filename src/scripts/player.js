@@ -127,17 +127,25 @@ function updatePlayer() {
   movePlayer();
   playerShoot();
   player.shoots.forEach((shoot, i) => shootUpdate(shoot, i, playerShootHitEnemies));
+if(player.immortal){
+  	player.hp = player.immortalHp;
+  }
   if (player.hp <= 0) {
     enemies = [];
     enemiesShoots = [];
     createPlayer();
-    clearTimeout(currBoss.next);
-    currBoss.reset();
+	bosses.forEach((boss) => {
+		boss.reset();
+	    clearTimeout(boss.next);
+	});
+	currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
+	currBoss.reset();
  	boss = false
   }
   player.distance += 1;
   if(player.distance % 500 == 0){
   	player.hp++
+  	player.immortalHp++;
   }
 }
 createPlayer();

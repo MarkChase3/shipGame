@@ -7,6 +7,7 @@ function createPowerupSpawner() {
    () => {
   	  player.immortal = true;
 	  player.immortalStart = Date.now();
+	  player.immortalHp = player.hp
 	  let n = addPowerupToUI('images/heart.png',5000, [1,1,16,16], 'Immortality');
 	  window.setTimeout(() => {
 	    player.immortal = false;

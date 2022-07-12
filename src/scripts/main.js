@@ -1,7 +1,10 @@
 // update
-bosses[0].reset();
-bosses[1].reset();
+bosses.forEach((boss) => {
+		boss.reset();
+	    clearTimeout(boss.next);
+});
 let currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
+currBoss.reset();
 let now = 0, then = Date.now();
 function update() {
   if (nImages == nImagesLoaded && now - then > 1 / 30) {
