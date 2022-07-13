@@ -3,8 +3,7 @@ bosses.forEach((boss) => {
 		boss.reset();
 	    clearTimeout(boss.next);
 });
-let currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
-currBoss.reset();
+let currBoss;
 let now = 0, then = Date.now();
 function update() {
   if (nImages == nImagesLoaded && now - then > 1 / 30) {
@@ -19,6 +18,10 @@ function update() {
     enemieSpawnerUpdate();
     updatePowerupsSpawner();
     drawUI();
+    if(Date.now() - lastBossDeath > 60000 && !boss){
+    	boss = true;
+    	currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
+	}
   }
   now = Date.now();
   window.requestAnimationFrame(update);

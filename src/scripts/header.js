@@ -66,3 +66,4 @@ function aabbCollision(ax, ay, aw, ah, bx, by, bw, bh) {
 }
 let bosses = [];
 let boss = false;
+let lastBossDeath = Date.now();

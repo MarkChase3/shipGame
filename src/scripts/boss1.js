@@ -94,6 +94,7 @@ bosses[0] = [
    					player.kills+=5;
     				boss = false;
     				bosses[0].reset();
+    				lastBossDeath = Date.now();
 					return 0;
   				}
   				player.shoots.forEach((shoot, i) => {
@@ -161,10 +162,5 @@ bosses[0].reset = () => {
 	bosses[0].lastShoot = Date.now()
 	bosses[0].shootFrequency = 300
 	bosses[0].shoots = []
-	bosses[0].next = window.setTimeout( () => {
-		console.log('1');
-		boss = true;
-		currBoss = bosses[Math.floor(Math.random() * (bosses.length))] 
-	}, 60000)
 }
-
+bosses[0].reset();

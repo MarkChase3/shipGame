@@ -136,10 +136,8 @@ if(player.immortal){
     createPlayer();
 	bosses.forEach((boss) => {
 		boss.reset();
-	    clearTimeout(boss.next);
 	});
-	currBoss = bosses[Math.floor( Math.random() * (bosses.length))]
-	currBoss.reset();
+	lastBossDeath = Date.now();
  	boss = false
   }
   player.distance += 1;
